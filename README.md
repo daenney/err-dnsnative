@@ -1,5 +1,8 @@
 # err-dnsnative
 
+[![Build Status](https://travis-ci.org/daenney/err-dnsnative.png)](https://travis-ci.org/daenney/err-dnsnative)
+[![Coverage Status](https://coveralls.io/repos/daenney/err-dnsnative/badge.png)](https://coveralls.io/r/daenney/err-dnsnative)
+
 The aim of this plugin is to implement all kinds of DNS lookup actions but
 sticking to Python libraries.
 
