@@ -8,8 +8,8 @@ sticking to Python libraries.
 
 It currently has no dependencies except for the Python Standard Library.
 
-It requires Python 3.2 or higher until Err can successfully be installed on
-Python 2 so the tests can run.
+It requires Python 3.3 or higher until Err can successfully be installed on
+Python 2.7 so the tests can run.
 
 ## Install
 
