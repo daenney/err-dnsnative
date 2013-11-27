@@ -1,0 +1,9 @@
+[Core]
+Name = DNSNative
+Module = dnsnative
+    
+[Documentation]
+Description = This module uses Python libraries to provide host/IP lookup features.
+
+[Python]
+Version = 3
