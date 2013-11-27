@@ -19,9 +19,9 @@ class DNSNativeUtilitiesTest(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_get_host_by_ip(self):
-        expected = "127.0.0.1 resolves to localhost."
+        expected = "127.0.0.1 resolves to localhost"
         result = dnsnative.DNSNative.get_host_by_ip('127.0.0.1')
-        self.assertEqual(result, expected)
+        self.assertRegex(result, expected)
 
         expected = "Could not resolve 255.255.255.254."
         result = dnsnative.DNSNative.get_host_by_ip('255.255.255.254')
@@ -45,11 +45,12 @@ class DNSNativeUtilitiesTest(unittest.TestCase):
         result = dnsnative.DNSNative.get_host_by_name('localhost')
         self.assertRegex(result, expected)
 
-        expected = ('google-public-dns-b.google.com resolves to 8.8.4.4,'
-                    ' 2001:4860:4860::8844.')
         result = dnsnative.DNSNative.get_host_by_name('google-public-dns-'
                                                       'b.google.com')
-        self.assertEqual(result, expected)
+        self.assertRegex(result,
+                         'google-public-dns-b.google.com resolves to')
+        self.assertRegex(result, '8.8.4.4')
+        self.assertRegex(result, '2001:4860:4860::8844')
 
         expected = 'Could not resolve abra.cada.bra.'
         result = dnsnative.DNSNative.get_host_by_name('abra.cada.bra')
@@ -74,16 +75,25 @@ class DNSNativeBotTests(FullStackTest):
 
     def test_host_hostname(self):
         pushMessage('!host google-public-dns-b.google.com')
-        self.assertEqual('google-public-dns-b.google.com resolves to 8.8.4.4,'
-                         ' 2001:4860:4860::8844.', popMessage())
+        response = popMessage()
+        self.assertRegex(response,
+                         'google-public-dns-b.google.com resolves to')
+        self.assertRegex(response, '8.8.4.4')
+        self.assertRegex(response, '2001:4860:4860::8844')
 
     def test_host_hostnames(self):
         pushMessage('!host google-public-dns-b.google.com google-public-dns'
                     '-b.google.com')
-        self.assertEqual('google-public-dns-b.google.com resolves to 8.8.4.4,'
-                         ' 2001:4860:4860::8844.', popMessage())
-        self.assertEqual('google-public-dns-b.google.com resolves to 8.8.4.4,'
-                         ' 2001:4860:4860::8844.', popMessage())
+        response1 = popMessage()
+        response2 = popMessage()
+        self.assertRegex(response1,
+                         'google-public-dns-b.google.com resolves to')
+        self.assertRegex(response2,
+                         'google-public-dns-b.google.com resolves to')
+        self.assertRegex(response1, '8.8.4.4')
+        self.assertRegex(response1, '2001:4860:4860::8844')
+        self.assertRegex(response2, '8.8.4.4')
+        self.assertRegex(response2, '2001:4860:4860::8844')
 
     def test_host_ip(self):
         pushMessage('!host 8.8.4.4')
