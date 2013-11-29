@@ -2,7 +2,7 @@ language: python
 python:
   - 3.3
 install:
-  - pip install -q yapsy=1.10.2-pythons2n3 err==2.0.0rc2 --use-mirrors --use-wheel
+  - pip install -q yapsy==1.10.2-pythons2n3 err==2.0.0rc2 --use-mirrors --use-wheel
   - pip install -q pep8 coverage coveralls --use-mirrors --use-wheel
 script:
   - coverage run --source=dnsnative.py test_dnsnative.py
