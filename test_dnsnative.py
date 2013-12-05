@@ -71,7 +71,7 @@ class DNSNativeGetHostByTest(unittest.TestCase):
     def test_get_host_by_name_localhost(self):
         """Resolve localhost to it's IPv4 and IPv6 counterparts."""
         # Test that localhost resolves to IPv4 and IPv6.
-        expected = "localhost resolves to ::1, 127.0.0.1"
+        expected = "localhost resolves to:\n • ::1\n • 127.0.0.1"
         result = dnsnative.DNSNative.get_host_by_name('localhost')
         self.assertRegex(result, expected)
 

@@ -74,6 +74,12 @@ class DNSNative(BotPlugin):
             ips = []
             for item in result:
                 ips.append(item[4][0])
-            return "{0} resolves to {1}.".format(name, ', '.join(ips))
+            if len(ips) == 1:
+                return "{0} resolves to {1}.".format(name, ', '.join(ips))
+            else:
+                message = ["{0} resolves to:".format(name), ]
+                for ip in ips:
+                    message.append(' • {0}'.format(ip))
+                return '\n'.join(message)
         except socket.gaierror:
             return "Could not resolve {0}.".format(name)
