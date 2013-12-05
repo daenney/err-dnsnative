@@ -75,6 +75,12 @@ class DNSNativeGetHostByTest(unittest.TestCase):
         result = dnsnative.DNSNative.get_host_by_name('localhost')
         self.assertRegex(result, expected)
 
+    def test_get_host_by_name_single_answer(self):
+        """Resolve an address that only gives a single reply."""
+        expected = 'tweakers.net resolves to 213.239.154.20.'
+        result = dnsnative.DNSNative.get_host_by_name('tweakers.net')
+        self.assertEqual(result, expected)
+
     def test_get_host_by_name_google_dns(self):
         """Resolve a Google Public DNS hostname to its IPv4 and IPv6
         counterparts."""
