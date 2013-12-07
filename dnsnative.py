@@ -16,7 +16,7 @@ class DNSNative(BotPlugin):
 
     @botcmd(split_args_with=None)
     def host(self, message, args):
-        """Resolve a hostname to IP('s) or an IP to its hostname."""
+        """Resolve the provided hostname(s) and/or IP(s)."""
         if not args:
             yield self.host_help()
         for arg in args:
@@ -27,7 +27,7 @@ class DNSNative(BotPlugin):
 
     @botcmd
     def host_help(self, *args):
-        """Give the user some help."""
+        """Usage information for this plugin."""
         return ("host: provide a hostname or an IP and I'll look it up for "
                 "you. You can also provide multiple hostnames or IP's as "
                 "long as they are separated by spaces.")
