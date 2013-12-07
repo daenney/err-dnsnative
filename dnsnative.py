@@ -39,16 +39,17 @@ class DNSNative(BotPlugin):
         is_ip = False
         try:
             socket.inet_pton(socket.AF_INET, value)
-            is_ip = True
-            log.debug("{0} found to be an IPv4 address.".format(value))
         except socket.error:
             try:
                 socket.inet_pton(socket.AF_INET6, value)
-                is_ip = True
-                log.debug("{0} found to be an IPv6 address.".format(value))
             except socket.error:
                 log.debug("{0} is not an IP.".format(value))
-
+            else:
+                is_ip = True
+                log.debug("{0} found to be an IPv6 address.".format(value))
+        else:
+            is_ip = True
+            log.debug("{0} found to be an IPv4 address.".format(value))
         return is_ip
 
     @staticmethod
@@ -56,10 +57,11 @@ class DNSNative(BotPlugin):
         """Do a reverse lookup and find the IP's corresponding hostname(s)."""
         try:
             hostname, _, _ = socket.gethostbyaddr(ip)
-            return "{0} resolves to {1}.".format(
-                ip, hostname)
         except socket.herror:
             return "Could not resolve {0}.".format(ip)
+        else:
+            return "{0} resolves to {1}.".format(
+                ip, hostname)
 
     @staticmethod
     def get_host_by_name(name):
@@ -70,6 +72,9 @@ class DNSNative(BotPlugin):
             # CNAMES but at least we can deal with legacy IP protocol v4 and
             # the current v6 standard.
             result = socket.getaddrinfo(name, 80, 0, 0, socket.SOL_TCP)
+        except socket.gaierror:
+            return "Could not resolve {0}.".format(name)
+        else:
             log.debug("Got {0} for {1}".format(result, name))
             ips = []
             for item in result:
@@ -81,5 +86,3 @@ class DNSNative(BotPlugin):
                 for ip in ips:
                     message.append(' • {0}'.format(ip))
                 return '\n'.join(message)
-        except socket.gaierror:
-            return "Could not resolve {0}.".format(name)
