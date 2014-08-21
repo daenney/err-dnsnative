@@ -6,4 +6,4 @@ Module = dnsnative
 Description = This module uses Python libraries to provide host/IP lookup features.
 
 [Python]
-Version = 3
+Version = 2+
