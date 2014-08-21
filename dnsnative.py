@@ -10,7 +10,7 @@ log = logging.getLogger(name='errbot.plugins.DNSNative')
 
 class DNSNative(BotPlugin):
 
-    min_err_version = '2.0.0-rc1'
+    min_err_version = '2.1.0'
 
     if hasattr(socket, 'setdefaulttimeout'):
         socket.setdefaulttimeout(5)
