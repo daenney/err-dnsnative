@@ -8,8 +8,7 @@ sticking to Python libraries.
 
 It currently has no dependencies except for the Python Standard Library.
 
-It requires Python 3.3 or higher until Err can successfully be installed on
-Python 2.7 so the tests can run.
+It requires Python 2.7 or 3.3 and higher.
 
 ## Install
 
@@ -19,11 +18,13 @@ Python 2.7 so the tests can run.
 
 ## Commands
 
- * ``!host``: This command will take one or multiple hostnames or IP addresses
-              and look them up through your system's resolver.
-              It uses Python's ``socket`` library which currently limits us to
-              only being able to resolve IP -> hostname or hostname -> IP.
-   * ``help``: This subcommand will print out some usage instructions.
+| Command | argument                        | result                                                          |
+|---------|---------------------------------|-----------------------------------------------------------------|
+| !host   |                                 | Prints the help                                                 |
+|         | help                            | Prints the help                                                 |
+|         | <hostname>                      | Returns the associated IP(s). This is an A/AAAA-record lookup.  |
+|         | <ip>                            | Returns the associated hostname. This is a PTR-record lookup.   |
+|         | <multiple IPs and/or hostnames> | Does the correct lookup for every entry and returns the result. |
 
 ## License
 
