@@ -29,3 +29,26 @@ It requires Python 2.7 or 3.3 and higher.
 ## License
 
 This code is licensed under the GPLv3, see the LICENSE file.
+
+## Contributing
+
+This plugin is fully tested and uses py.test as a testing framework. Pull
+requests for features or fixes must ship with new or updated tests.
+
+In order to install the development dependencies:
+
+```
+pip install -r requirements-test.txt
+```
+
+You can then simply run the tests with:
+
+```
+py.test --pep8
+```
+
+### PEP8
+
+PEP8 is a hard requirement for this module. Regardless of its merits or
+personal dislike of it, it is the style this module is written in and
+code is checked during CI for PEP8 compliance.
