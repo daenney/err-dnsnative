@@ -18,13 +18,13 @@ It requires Python 2.7 or 3.3 and higher.
 
 ## Commands
 
-| Command | argument                        | result                                                          |
-|---------|---------------------------------|-----------------------------------------------------------------|
-| !host   |                                 | Prints the help                                                 |
-|         | help                            | Prints the help                                                 |
-|         | <hostname>                      | Returns the associated IP(s). This is an A/AAAA-record lookup.  |
-|         | <ip>                            | Returns the associated hostname. This is a PTR-record lookup.   |
-|         | <multiple IPs and/or hostnames> | Does the correct lookup for every entry and returns the result. |
+| Command | argument                         | result                                                          |
+|---------|----------------------------------|-----------------------------------------------------------------|
+| !host   |                                  | Prints the help                                                 |
+|         | help                             | Prints the help                                                 |
+|         | \<hostname>                      | Returns the associated IP(s). This is an A/AAAA-record lookup.  |
+|         | \<ip>                            | Returns the associated hostname. This is a PTR-record lookup.   |
+|         | \<multiple IPs and/or hostnames> | Does the correct lookup for every entry and returns the result. |
 
 ## License
 
