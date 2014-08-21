@@ -43,7 +43,7 @@ class DNSNativeGetHostByTest(unittest.TestCase):
         """Resolve the 127.0.0.1 to localhost."""
         expected = "127.0.0.1 resolves to localhost"
         result = dnsnative.DNSNative.get_host_by_ip('127.0.0.1')
-        self.assertRegex(result, expected)
+        self.assertRegexpMatches(result, expected)
 
     def test_get_host_by_ip_v4_unknown(self):
         """Try to resolve something that's unlikely to have a PTR."""
@@ -75,7 +75,7 @@ class DNSNativeGetHostByTest(unittest.TestCase):
         # Test that localhost resolves to IPv4 and IPv6.
         expected = "localhost resolves to:\n • ::1\n • 127.0.0.1"
         result = dnsnative.DNSNative.get_host_by_name('localhost')
-        self.assertRegex(result, expected)
+        self.assertRegexpMatches(result, expected)
 
     def test_get_host_by_name_single_answer(self):
         """Resolve an address that only gives a single reply."""
@@ -88,10 +88,10 @@ class DNSNativeGetHostByTest(unittest.TestCase):
         counterparts."""
         result = dnsnative.DNSNative.get_host_by_name('google-public-dns-'
                                                       'b.google.com')
-        self.assertRegex(result,
-                         'google-public-dns-b.google.com resolves to')
-        self.assertRegex(result, '8.8.4.4')
-        self.assertRegex(result, '2001:4860:4860::8844')
+        self.assertRegexpMatches(result,
+                                 'google-public-dns-b.google.com resolves to')
+        self.assertRegexpMatches(result, '8.8.4.4')
+        self.assertRegexpMatches(result, '2001:4860:4860::8844')
 
     def test_get_host_by_name_unknown(self):
         """Try to resolve a bogus hostname."""
@@ -127,10 +127,10 @@ class DNSNativeBotTests(FullStackTest):
         """Send host hostname, verify we get the correctly reply."""
         pushMessage('!host google-public-dns-b.google.com')
         response = popMessage()
-        self.assertRegex(response,
-                         'google-public-dns-b.google.com resolves to')
-        self.assertRegex(response, '8.8.4.4')
-        self.assertRegex(response, '2001:4860:4860::8844')
+        self.assertRegexpMatches(response,
+                                 'google-public-dns-b.google.com resolves to')
+        self.assertRegexpMatches(response, '8.8.4.4')
+        self.assertRegexpMatches(response, '2001:4860:4860::8844')
 
     def test_host_hostnames(self):
         """Send host with multiple hostnames, verify we get multiple responses
@@ -139,14 +139,14 @@ class DNSNativeBotTests(FullStackTest):
                     '-b.google.com')
         response1 = popMessage()
         response2 = popMessage()
-        self.assertRegex(response1,
-                         'google-public-dns-b.google.com resolves to')
-        self.assertRegex(response2,
-                         'google-public-dns-b.google.com resolves to')
-        self.assertRegex(response1, '8.8.4.4')
-        self.assertRegex(response1, '2001:4860:4860::8844')
-        self.assertRegex(response2, '8.8.4.4')
-        self.assertRegex(response2, '2001:4860:4860::8844')
+        self.assertRegexpMatches(response1,
+                                 'google-public-dns-b.google.com resolves to')
+        self.assertRegexpMatches(response2,
+                                 'google-public-dns-b.google.com resolves to')
+        self.assertRegexpMatches(response1, '8.8.4.4')
+        self.assertRegexpMatches(response1, '2001:4860:4860::8844')
+        self.assertRegexpMatches(response2, '8.8.4.4')
+        self.assertRegexpMatches(response2, '2001:4860:4860::8844')
 
     def test_host_ip(self):
         """Send host IP, verify we get the expected hostname back."""
@@ -179,7 +179,7 @@ class TestCodeFormat(unittest.TestCase):
         pep8style = pep8.StyleGuide(quiet=True)
         result = pep8style.check_files(['dnsnative.py', 'test_dnsnative.py'])
         self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
+                         'Found code style errors (and warnings).')
 
 
 if __name__ == '__main__':
