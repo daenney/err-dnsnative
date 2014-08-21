@@ -35,9 +35,9 @@ class TestGetHostBy(object):
 
     def test_get_host_by_ip_v4_localhost(self):
         """Resolve the 127.0.0.1 to localhost."""
-        expected = "127.0.0.1 resolves to localhost."
+        expected = "127.0.0.1 resolves to localhost"
         result = dnsnative.DNSNative.get_host_by_ip('127.0.0.1')
-        assert result == expected
+        assert expected in result
 
     def test_get_host_by_ip_v4_unknown(self):
         """Try to resolve something that's unlikely to have a PTR."""
@@ -53,9 +53,9 @@ class TestGetHostBy(object):
 
     def test_get_host_by_ip_v6_localhost(self):
         """Resolve ::1 to localhsot."""
-        expected = "::1 resolves to localhost."
+        expected = "::1 resolves to localhost"
         result = dnsnative.DNSNative.get_host_by_ip('::1')
-        assert result == expected
+        assert expected in result
 
     def test_get_host_by_ip_v6_google_dns(self):
         """Resolve a know public IPv6 address."""
