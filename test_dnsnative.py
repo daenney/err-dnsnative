@@ -18,16 +18,16 @@ class TestIsIP(object):
     def test_is_ip_v4(self):
         """Test if we can determine the passed value is an IPv4 address.
         IP address."""
-        assert dnsnative.DNSNative.is_ip('10.120.1.1') is True
+        assert dnsnative.DNSNative.is_ip('10.120.1.1')
 
     def test_is_ip_ipv6(self):
         """Test if we can determine the passed value is an IPv6 address.
         IP address."""
-        assert dnsnative.DNSNative.is_ip('::1') is True
+        assert dnsnative.DNSNative.is_ip('::1')
 
     def test_is_not_ip(self):
         """Test if we can determine the passed value isn't an IP address."""
-        assert dnsnative.DNSNative.is_ip('abra.cada.bra') is False
+        assert not dnsnative.DNSNative.is_ip('abra.cada.bra')
 
 
 class TestGetHostBy(object):
